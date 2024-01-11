@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ip_allow:
+    - name: Add Actions to IP Allow List
+      uses: peter-murray/github-ip-allow-list-action@v1
+        with:
+          github_token: ${{ secrets.ENTERPRISE_ACCESS_PAT }}
+          enterprise_slug: visrani-org
+          metadata_section: actions
+          active: false
